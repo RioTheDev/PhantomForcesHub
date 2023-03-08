@@ -29,9 +29,7 @@ local function getClosest(fov,bodypartName,isVis)
             local thirdpersonObj = entry and entry:getThirdPersonObject()
             local bodypart = thirdpersonObj and thirdpersonObj:getBodyPart(bodypartName)
             if bodypart then
-                if isVis and isVisible(bodypart.Position)==false then
-                    continue
-                end
+               
                 local screenpos, onscreen = camera:WorldToViewportPoint(bodypart.Position)
                 local middle = camera.ViewportSize/2
                 local distance = (Vector2.new(screenpos.X,screenpos.Y)-middle).Magnitude
