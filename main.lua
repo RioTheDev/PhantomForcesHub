@@ -1,9 +1,7 @@
-if Rayfield then
-    Rayfield:Destroy()
-end
+
 
 local SilentAim = loadstring(game:HttpGet("https://raw.githubusercontent.com/RioTheDev/EnergyAssaultHub/master/scripts/SilentAim.lua"))()
-getgenv().Rayfield=loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
+local Rayfield=loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
 print(SilentAim)
 
 local clearStr="\n"
@@ -52,7 +50,7 @@ SilentAimTab:CreateToggle({
 })
 
 -- Silent Aim Hit Part
-SilentAimTab:CreateDropdown({
+local drop = SilentAimTab:CreateDropdown({
     Name="Hit Part",
     Options={"Head","Torso","Left Arm","Right Arm","Left Leg","Right Leg","Random"},
     CurrentOption="Head",
@@ -72,6 +70,7 @@ SilentAimTab:CreateDropdown({
         SilentAim["hitpart"]=hitpartDic[Value]
     end
 })
+
 
 --Silent Aim FOV
 SilentAimTab:CreateSlider({
