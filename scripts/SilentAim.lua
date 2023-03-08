@@ -25,7 +25,7 @@ local function getClosest(fov,bodypartName,isVis)
     local _bodypart = nil
     local _player = nil
     for player,entry in next,entryTable do
-        if player and entry then
+        if player and entry and player.Team ~=localPlayer.Team then
             local thirdpersonObj = entry and entry:getThirdPersonObject()
             local bodypart = thirdpersonObj and thirdpersonObj:getBodyPart(bodypartName)
             if bodypart then
