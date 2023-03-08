@@ -4,6 +4,7 @@ end
 
 local SilentAim = loadstring(game:HttpGet("https://raw.githubusercontent.com/RioTheDev/EnergyAssaultHub/master/scripts/SilentAim.lua"))()
 getgenv().Rayfield=loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
+print(SilentAim)
 
 local clearStr="\n"
 for i = 1, 60, 1 do
