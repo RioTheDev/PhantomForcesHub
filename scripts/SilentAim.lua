@@ -44,6 +44,7 @@ function SilentAim:Enable()
     function network:send(name,...)
         local args = {...}
         if name=="newbullets" then
+            print(SilentAim.fov)
             local bodypart,player = getClosest(SilentAim.fov,SilentAim.hitpart)
             if bodypart and player then
                 print(bodypart.Name)

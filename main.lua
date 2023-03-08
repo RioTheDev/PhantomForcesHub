@@ -2,6 +2,7 @@ if Rayfield then
     Rayfield:Destroy()
 end
 
+SilentAim = loadstring(game:HttpGet("https://raw.githubusercontent.com/RioTheDev/EnergyAssaultHub/master/scripts/SilentAim.lua"))()
 getgenv().Rayfield=loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
 
 local clearStr="\n"
@@ -32,7 +33,11 @@ SilentAimTab:CreateToggle({
     CurrentValue=false,
     Flag="SilentAimEnable",
     Callback=function(Value)
-        print(Value)
+        if Value then
+            SilentAim:Enable()
+        else
+            SilentAim:Disable()
+        end
     end
 })
 -- Silent Aim Visibility Toggle
@@ -52,7 +57,15 @@ SilentAimTab:CreateDropdown({
     CurrentOption="Head",
     Flag="SilentAimHitPart",
     Callback=function(Value)
-        print(Value)
+        local hitpartTable = {
+            Head="head",
+            Torso="torso",
+            ["Left Arm"]="larm",
+            ["Right Arm"]="rarm",
+            ["Left Leg"]="lleg",
+            ["Right Leg"]="rleg",
+        }
+        SilentAim["hitpart"]=hitpartTable[Value]
     end
 })
 
@@ -65,7 +78,7 @@ SilentAimTab:CreateSlider({
     Suffix="Pixels",
     Flag="SilentAimFOV",
     Callback=function(Value)
-        print(Value)
+        SilentAim["fov"]=Value
     end
 })
 --#endregion
