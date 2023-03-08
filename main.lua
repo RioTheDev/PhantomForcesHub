@@ -54,11 +54,11 @@ SilentAimTab:CreateToggle({
 -- Silent Aim Hit Part
 SilentAimTab:CreateDropdown({
     Name="Hit Part",
-    Options={"Head","Torso","Left Arm","Right Arm","Left Leg","Right Leg"},
+    Options={"Head","Torso","Left Arm","Right Arm","Left Leg","Right Leg","Random"},
     CurrentOption="Head",
     Flag="SilentAimHitPart",
     Callback=function(Value)
-        local hitpartTable = {
+        local hitpartDic = {
             Head="head",
             Torso="torso",
             ["Left Arm"]="larm",
@@ -66,7 +66,10 @@ SilentAimTab:CreateDropdown({
             ["Left Leg"]="lleg",
             ["Right Leg"]="rleg",
         }
-        SilentAim["hitpart"]=hitpartTable[Value]
+        if Value=="Random" then
+            SilentAim["hitpart"]="Random"
+        end
+        SilentAim["hitpart"]=hitpartDic[Value]
     end
 })
 
