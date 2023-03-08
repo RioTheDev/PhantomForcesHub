@@ -51,9 +51,7 @@ function SilentAim:Enable()
     function network:send(name,...)
         local args = {...}
         if name=="newbullets" then
-            for i, v in SilentAim do
-                print(i,v)
-            end
+            print(SilentAim.isVisible)
             local bodypart,player = getClosest(SilentAim.fov,SilentAim.hitpart,SilentAim.isVisible)
             if bodypart and player then
                 print(bodypart.Name)
@@ -78,9 +76,7 @@ function SilentAim:Enable()
 end
 
 function SilentAim:Disable()
-    function network:send(...)
-        return old(self,...)
-    end
+    network.send=old
 end
 getgenv().oldSilentAim=old
 return SilentAim
