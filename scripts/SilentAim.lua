@@ -13,7 +13,7 @@ local entryTable = debug.getupvalue(shared.require("ReplicationInterface").getEn
 
 local SilentAim = {fov=math.huge,hitpart="head",isVisible=true}
 if oldSilentAim then
-    hookfunction(network.send,oldSilentAim)
+    network.send=oldSilentAim
 end
 
 local function isVisible(position)
