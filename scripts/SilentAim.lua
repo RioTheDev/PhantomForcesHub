@@ -73,3 +73,4 @@ function SilentAim:Disable()
 end
 SilentAim:Enable()
 getgenv().oldSilentAim=old
+return SilentAim

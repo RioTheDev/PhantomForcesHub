@@ -2,7 +2,7 @@ if Rayfield then
     Rayfield:Destroy()
 end
 
-SilentAim = loadstring(game:HttpGet("https://raw.githubusercontent.com/RioTheDev/EnergyAssaultHub/master/scripts/SilentAim.lua"))()
+local SilentAim = loadstring(game:HttpGet("https://raw.githubusercontent.com/RioTheDev/EnergyAssaultHub/master/scripts/SilentAim.lua"))()
 getgenv().Rayfield=loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
 
 local clearStr="\n"
