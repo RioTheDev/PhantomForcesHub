@@ -47,7 +47,7 @@ SilentAimTab:CreateToggle({
     CurrentValue=true,
     Flag="SilentAimVisEnable",
     Callback=function(Value)
-        print(Value)
+        SilentAim.isVisible=Value
     end
 })
 

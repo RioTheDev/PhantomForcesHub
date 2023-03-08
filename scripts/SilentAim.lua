@@ -11,12 +11,16 @@ local trajectory = shared.require("physics").trajectory
 local bulletAcceleration = shared.require("PublicSettings").bulletAcceleration
 local entryTable = debug.getupvalue(shared.require("ReplicationInterface").getEntry, 1);
 
-local SilentAim = {fov=math.huge,hitpart="head"}
+local SilentAim = {fov=math.huge,hitpart="head",isVisible=true}
 if oldSilentAim then
     hookfunction(network.send,oldSilentAim)
 end
 
-local function getClosest(fov,bodypartName)
+local function isVisible(position)
+    return #camera:GetPartsObscuringTarget({ position }, { workspace.Terrain, workspace.Ignore, camera }) == 0;
+end
+
+local function getClosest(fov,bodypartName,isVis)
     local _distance = fov or math.huge
     local _bodypart = nil
     local _player = nil
@@ -25,6 +29,9 @@ local function getClosest(fov,bodypartName)
             local thirdpersonObj = entry and entry:getThirdPersonObject()
             local bodypart = thirdpersonObj and thirdpersonObj:getBodyPart(bodypartName)
             if bodypart then
+                if isVis and isVisible(bodypart.Position)==false then
+                    continue
+                end
                 local screenpos, onscreen = camera:WorldToViewportPoint(bodypart.Position)
                 local middle = camera.ViewportSize/2
                 local distance = (Vector2.new(screenpos.X,screenpos.Y)-middle).Magnitude
@@ -44,8 +51,10 @@ function SilentAim:Enable()
     function network:send(name,...)
         local args = {...}
         if name=="newbullets" then
-            print(SilentAim.fov)
-            local bodypart,player = getClosest(SilentAim.fov,SilentAim.hitpart)
+            for i, v in SilentAim do
+                print(i,v)
+            end
+            local bodypart,player = getClosest(SilentAim.fov,SilentAim.hitpart,SilentAim.isVisible)
             if bodypart and player then
                 print(bodypart.Name)
                 local bullets = args[1]["bullets"]
