@@ -78,7 +78,9 @@ function SilentAim:Enable()
 end
 
 function SilentAim:Disable()
-    hookfunction(network.send,old)
+    function network:send(...)
+        return old(self,...)
+    end
 end
 getgenv().oldSilentAim=old
 return SilentAim

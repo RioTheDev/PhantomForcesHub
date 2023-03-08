@@ -18,7 +18,7 @@ local Window = Rayfield:CreateWindow({
     LoadingTitle="Loading Rio's Hub",
     LoadingSubtitle="By RIO#8750",
     ConfigurationSaving = {
-        Enabled = true,
+        Enabled = false,
         FolderName = "RioHub",
         FileName = "Rios Hub"
      },
