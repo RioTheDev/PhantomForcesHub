@@ -29,7 +29,11 @@ local function getClosest(fov,bodypartName,isVis)
             local thirdpersonObj = entry and entry:getThirdPersonObject()
             local bodypart = thirdpersonObj and thirdpersonObj:getBodyPart(bodypartName)
             if bodypart then
-               
+                if isVis and isVisible(bodypart.Position) then
+                    print("A")
+                    continue
+                end
+                print("B")
                 local screenpos, onscreen = camera:WorldToViewportPoint(bodypart.Position)
                 local middle = camera.ViewportSize/2
                 local distance = (Vector2.new(screenpos.X,screenpos.Y)-middle).Magnitude
@@ -49,10 +53,8 @@ function SilentAim:Enable()
     function network:send(name,...)
         local args = {...}
         if name=="newbullets" then
-            print(SilentAim.isVisible)
             local bodypart,player = getClosest(SilentAim.fov,SilentAim.hitpart,SilentAim.isVisible)
             if bodypart and player then
-                print(bodypart.Name)
                 local bullets = args[1]["bullets"]
                 local firepos = args[1]["firepos"]
 
