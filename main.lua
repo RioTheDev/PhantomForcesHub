@@ -65,7 +65,6 @@ local drop = SilentAimTab:CreateDropdown({
             ["Right Leg"]="rleg",
             Random="Random"
         }
-
         SilentAim["hitpart"]=hitpartDic[Value]
     end
 })
