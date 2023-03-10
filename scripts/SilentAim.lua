@@ -55,6 +55,7 @@ function SilentAim:Enable()
         if name=="newbullets" then
             local bodypartTable ={"head","torso","larm","rarm","lleg","rleg"} 
             local part = if SilentAim.hitpart=="Random" then bodypartTable[math.random(1,#bodypartTable)] else SilentAim.hitpart
+            print(part)
             local bodypart,player = getClosest(SilentAim.fov,part,SilentAim.isVisible)
             if bodypart and player then
                 local bullets = args[1]["bullets"]
